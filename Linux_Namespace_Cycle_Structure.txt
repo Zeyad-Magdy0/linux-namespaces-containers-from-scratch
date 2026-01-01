@@ -1,0 +1,75 @@
+linux-namespaces-lab/
+│
+├── README.md
+│   # Project overview:
+│   # Explains how Linux namespaces and cgroups form the foundation
+│     of containers, and how each lab builds toward a minimal
+│   # container runtime implemented from first principles.
+│
+├── 01-pid-namespace/
+│   # Process isolation and init semantics
+│   # Explores PID namespaces, PID 1 behavior, signal handling,
+│   # zombie reaping, and why containers require an init process.
+│   │
+│   ├── task.md
+│   │   # Final explanation of PID namespaces:
+│   │   # goals, observations, kernel behavior, and comparison
+│   │   # with Docker and Kubernetes.
+│   │
+│   ├── commands.sh
+│   │   # Minimal, reproducible commands used to create and
+│   │   # observe PID namespace behavior.
+│   │
+│   └── notes.md
+│       # Experimental notes, failures, and debugging insights
+│       # gathered while exploring PID namespaces.
+│
+├── 02-uts-namespace/
+│   # System identity isolation
+│   # Demonstrates hostname and domain isolation using UTS namespaces,
+│   # and explains the separation between hostname, DNS, and networking
+│   # in container environments.
+│
+├── 03-mount-namespace/
+│   # Filesystem view isolation and mount propagation
+│   # Covers mount namespaces, shared/private/slave propagation,
+│   # and explains why Docker remounts / as private and why
+│   # Kubernetes cares about mount propagation for volumes.
+│
+├── 04-rootfs/
+│   # Root filesystem isolation
+│   # Builds a minimal root filesystem and contrasts chroot vs pivot_root,
+│   # explaining why real container runtimes use pivot_root to
+│   # securely replace the root filesystem.
+│
+├── 05-network-namespace/
+│   # Single-container networking
+│   # Shows how a container starts with no network, then manually
+│   # configures loopback, veth pairs, IP addressing, routing,
+│   # and NAT to enable host and internet connectivity.
+│
+├── 06-veth-bridge/
+│   # Multi-container networking (Docker bridge model)
+│   # Demonstrates container-to-container communication using
+│   # veth pairs and a Linux bridge, explains ARP behavior,
+│   # and contrasts Docker's L2 bridge approach with
+│   # Kubernetes' flat L3 networking model.
+│
+├── 07-cgroups/
+│   # Resource control with cgroups v2
+│   # Explores the unified cgroup hierarchy, CPU time-based
+│   # scheduling limits, memory limits, OOM behavior,
+│   # and the distinction between namespaces and cgroups.
+│
+├── 08-combined-container/
+│   # Minimal container runtime
+│   # Combines namespaces and cgroups into a single workflow
+│   # that launches a fully isolated process, demonstrating
+│   # how containers are constructed without Docker or Kubernetes.
+│
+└── 09-comparison-with-docker/
+    # Feature-by-feature comparison
+    # Compares the manually implemented runtime with Docker:
+    # namespaces, cgroups, networking, filesystem isolation,
+    # and automation layers, highlighting what Docker adds
+    # on top of kernel primitives.

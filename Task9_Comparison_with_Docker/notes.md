@@ -1,0 +1,4 @@
+- Building containers manually highlighted how much Docker abstracts
+- Correct ordering of operations was difficult and error-prone
+- Understood why runtimes like runc and containerd exist
+- Docker simplifies container creation but does not change fundamentals
